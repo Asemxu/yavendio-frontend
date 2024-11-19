@@ -36,7 +36,6 @@ const useChat = () => {
             setMessages([...messages, message])
             clearMessage()
         }
-        
     }
 
     const clearMessage = () => {
