@@ -1,0 +1,25 @@
+.chat-message-container{
+    margin: 1rem;
+    display: flex
+}
+
+.user-text-title{
+    margin-bottom: 1rem;
+}
+
+.chat-message-container.right{
+    justify-content: end;
+}
+
+.chat-message-container.left{
+    justify-content: start;
+}
+
+.chat-message{
+    color:black;
+    background-color: white;
+    border-radius: 1rem;
+    display: flex;
+    padding: 1rem;
+}
+
