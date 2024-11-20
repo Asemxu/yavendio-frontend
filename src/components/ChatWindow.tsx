@@ -5,7 +5,7 @@ import Message from "../interfaces/Message";
 interface ChatWindowProps{
     messages : Message[]
 }
-
+ 
 const ChatWindow = (  { messages } : ChatWindowProps) => {
     return (
         <div className="chat-window">

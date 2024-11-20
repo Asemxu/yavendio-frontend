@@ -3,9 +3,19 @@ import Message from "../interfaces/Message"
 import randomUsername from "../utils/RandomUsername";
 const useChat = () => {
     const [ws, setWs] = useState<WebSocket | null>(null);
+    const [username,setUsername] = useState(randomUsername)
+    const [message,setMessage] = useState("")
+    const [messages,setMessages] = useState<Message[]>([]);
+    const addMessage = (message: Message) => {
+        if(ws){
+            ws.send(JSON.stringify(message))
+            setMessages([...messages, message])
+            clearMessage()
+        }
+    }
+
     useEffect(() => {
         const socket = new WebSocket('ws://localhost:8080');
-    
         socket.onopen = () => {
             console.log('Connected to WebSocket server');
         };
@@ -19,6 +29,10 @@ const useChat = () => {
         socket.onclose = () => {
             console.log('Disconnected from WebSocket server');
         };
+
+        socket.onerror = (error) => {
+            console.error('WebSocket error:', error);
+        };
     
         setWs(socket);
     
@@ -27,23 +41,16 @@ const useChat = () => {
         };
     }, []);
     
-    const [username,setUsername] = useState(randomUsername)
-    const [message,setMessage] = useState("")
-    const [messages,setMessages] = useState<Message[]>([]);
-    const addMessage = (message: Message) => {
-        if(ws){
-            ws.send(JSON.stringify(message))
-            setMessages([...messages, message])
-            clearMessage()
-        }
-    }
-
+ 
     const clearMessage = () => {
         setMessage("")
     }
 
     return {
         messages,
+        ws,
+        setWs,
+        clearMessage,
         message,
         setMessage,
         setMessages,
