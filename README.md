@@ -1,46 +1,78 @@
-# Getting Started with Create React App
+# Yavendio Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![Yavendio Logo](https://media.licdn.com/dms/image/v2/D4E0BAQGgchPE0Lj8DA/company-logo_200_200/company-logo_200_200/0/1726782927727/yavendio_logo?e=1740009600&v=beta&t=g2TPboGgEYhbjjI1Qdgc-xwqv_sPigM-xmXkBGROxZE)
 
-## Available Scripts
+## Descripción
 
-In the project directory, you can run:
+**Yavendio Frontend** es una aplicación web desarrollada con **React** y **TypeScript** que utiliza **WebSockets** para la comunicación en tiempo real. Este proyecto está diseñado para ser escalable, mantenible y fácil de usar, proporcionando una interfaz de usuario intuitiva y moderna.
 
-### `npm start`
+## 🚀 Características
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- **Interfaz de Usuario Intuitiva**: Diseñada con una experiencia de usuario fluida y atractiva.
+- **Componentes Reutilizables**: Utiliza componentes de React para facilitar la reutilización y el mantenimiento.
+- **WebSockets**: Implementación de WebSockets para comunicación en tiempo real.
+- **Pruebas Unitarias**: Cobertura de pruebas con Jest y React Testing Library.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## 🛠️ Tecnologías Utilizadas
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg" alt="React" width="40"/> **React**: Biblioteca principal para la construcción de la interfaz de usuario. 
+- <img src="https://upload.wikimedia.org/wikipedia/commons/4/4c/Typescript_logo_2020.svg" alt="TypeScript" width="40"/> **TypeScript**: Para añadir tipado estático y mejorar la calidad del código. 
+- <img src="https://repository-images.githubusercontent.com/9113587/aa03b380-afdb-11eb-8e88-2c7542e1670f" alt="WebSockets" width="40"/> **WebSockets**: Para la comunicación en tiempo real. 
+- <img src="https://ih1.redbubble.net/image.404020079.1876/bg,f8f8f8-flat,750x,075,f-pad,750x1000,f8f8f8.u7.jpg" alt="Jest" width="40"/> **Jest**: Para las pruebas unitarias. 
+- <img src="https://testing-library.com/img/octopus-128x128.png" alt="React Testing Library" width="40"/> **React Testing Library**: Para pruebas de
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 🧰 Instalación 
+Sigue estos pasos para configurar el proyecto localmente:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. Clona el repositorio:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+   ```bash
+   git clone https://github.com/Asemxu/yavendio-frontend.git
 
-### `npm run eject`
+2. Navega al directorio del proyecto:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+   ```bash
+   cd yavendio-frontend
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+3. Instala las dependencias:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+   ```bash
+   npm install
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+4. Inicia la aplicación:
 
-## Learn More
+   ```bash
+   npm start
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 📜 Scripts Disponibles
+
+En el directorio del proyecto, puedes ejecutar:
+
+- `npm start`: Inicia la aplicación en modo de desarrollo.
+- `npm test`: Ejecuta las pruebas unitarias.
+- `npm run build`: Construye la aplicación para producción en la carpeta `build`.
+- `npm run eject`: Si necesitas personalizar la configuración de Create React App.
+
+## 🤝 Contribución
+
+¡Las contribuciones son bienvenidas! Si deseas contribuir, sigue estos pasos:
+
+1. Haz un fork del proyecto.
+2. Crea una nueva rama (`git checkout -b feature/nueva-funcionalidad`).
+3. Realiza tus cambios y haz commit (`git commit -m 'Añadir nueva funcionalidad'`).
+4. Sube tus cambios (`git push origin feature/nueva-funcionalidad`).
+5. Abre un Pull Request.
+
+## 📄 Licencia
+
+Este proyecto está licenciado bajo la Licencia MIT. Consulta el archivo [LICENSE](LICENSE) para más detalles.
+
+## 📞 Contacto
+
+Si tienes alguna pregunta o sugerencia, no dudes en ponerte en contacto con nosotros:
+
+- **Correo Electrónico**: [support@yavendio.com](mailto:support@renzojimenezalfarotrabajos@gmail.com)
+- **GitHub**: [Asemxu](https://github.com/Asemxu)
