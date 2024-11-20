@@ -20,7 +20,7 @@
 - <img src="https://upload.wikimedia.org/wikipedia/commons/4/4c/Typescript_logo_2020.svg" alt="TypeScript" width="40"/> **TypeScript**: Para añadir tipado estático y mejorar la calidad del código. 
 - <img src="https://repository-images.githubusercontent.com/9113587/aa03b380-afdb-11eb-8e88-2c7542e1670f" alt="WebSockets" width="40"/> **WebSockets**: Para la comunicación en tiempo real. 
 - <img src="https://ih1.redbubble.net/image.404020079.1876/bg,f8f8f8-flat,750x,075,f-pad,750x1000,f8f8f8.u7.jpg" alt="Jest" width="40"/> **Jest**: Para las pruebas unitarias. 
-- <img src="https://testing-library.com/img/octopus-128x128.png" alt="React Testing Library" width="40"/> **React Testing Library**: Para pruebas de
+- <img src="https://testing-library.com/img/octopus-128x128.png" alt="React Testing Library" width="40"/> **React Testing Library**: Para pruebas de componentes
 
 
 ## 🧰 Instalación 
