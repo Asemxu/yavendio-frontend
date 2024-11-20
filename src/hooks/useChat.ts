@@ -6,7 +6,7 @@ const useChat = () => {
     const [username,setUsername] = useState(randomUsername)
     const [message,setMessage] = useState("")
     const [messages,setMessages] = useState<Message[]>([]);
-    const addMessage = (message: Message) => {
+    const sendMessage = (message: Message) => {
         if(ws){
             ws.send(JSON.stringify(message))
             setMessages([...messages, message])
@@ -54,7 +54,7 @@ const useChat = () => {
         message,
         setMessage,
         setMessages,
-        addMessage,
+        sendMessage,
         username,
         setUsername,
     }

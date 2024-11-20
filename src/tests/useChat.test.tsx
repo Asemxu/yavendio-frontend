@@ -29,7 +29,7 @@ test('get add message', async () => {
     await server.connected;
 
     act(() => {
-        result.current.addMessage(messageUser)
+        result.current.sendMessage(messageUser)
     })
 
     expect(result.current.messages).toEqual([messageUser])
@@ -72,9 +72,6 @@ test('get Random Username', async () => {
     const { result } = renderHook(() => useChat())
     await server.connected;
 
-    act(() => {
-        result.current.username
-    })
 
     expect(result.current.username).not.toEqual("")
     WS.clean()
@@ -87,10 +84,6 @@ test('valid connection WebSocket', async () => {
     const { result } = renderHook(() => useChat())
     await server.connected;
 
-    act(() => {
-        result.current.ws
-    })
-
     expect(result.current.ws).not.toBeNull();
     WS.clean()
 
@@ -101,10 +94,6 @@ test('valid connection WebSocket to url', async () => {
     let server = new WS("ws://localhost:8080");
     const { result } = renderHook(() => useChat())
     await server.connected;
-
-    act(() => {
-        result.current.ws
-    })
 
     expect(result.current.ws?.url).toEqual((await server.connected).url);
     WS.clean()
