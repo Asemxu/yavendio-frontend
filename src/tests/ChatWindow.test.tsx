@@ -1,5 +1,6 @@
-import { render, screen } from '@testing-library/react';
-import { act } from 'react'
+/* eslint-disable testing-library/no-node-access */
+/* eslint-disable testing-library/no-container */
+import { render } from '@testing-library/react';
 import Message from '../interfaces/Message';
 import RandomUsername from '../utils/RandomUsername';
 import ChatWindow from '../components/ChatWindow';
@@ -32,33 +33,37 @@ const mockMessages: Array<Message> = [
     }
 ]
 
-test('get chat-window', () => {
-    const { container } = render(<ChatWindow messages={mockMessages} />);
-    const chatMessageContainer = container.querySelector('.chat-window')
-    expect(chatMessageContainer).toBeInTheDocument();
-});
+describe('ChatWindow', () => {
+    describe('ChatWindow', () => {
+        test('get chat-window', () => {
+            const { container } = render(<ChatWindow messages={mockMessages} />);
+            const chatMessageContainer = container.querySelector('.chat-window')
+            expect(chatMessageContainer).toBeInTheDocument();
+        });
 
-test('show same count messages with component chat-message-container', () => {
-    const { container } = render(<ChatWindow messages={mockMessages} />);
-    const chatMessageContainer = container.querySelectorAll('.chat-message-container')
+        test('show same count messages with component chat-message-container', () => {
+            const { container } = render(<ChatWindow messages={mockMessages} />);
+            const chatMessageContainer = container.querySelectorAll('.chat-message-container')
 
-    expect(chatMessageContainer.length).toEqual(mockMessages.length);
-});
+            expect(chatMessageContainer.length).toEqual(mockMessages.length);
+        });
 
 
-test('compare different count messages with component chat-message-container', () => {
-    const { container } = render(<ChatWindow messages={mockMessages} />);
-    const chatMessageContainer = container.querySelectorAll('.chat-message-container')
+        test('compare different count messages with component chat-message-container', () => {
+            const { container } = render(<ChatWindow messages={mockMessages} />);
+            const chatMessageContainer = container.querySelectorAll('.chat-message-container')
 
-    expect(chatMessageContainer.length).not.toEqual(5);
-});
+            expect(chatMessageContainer.length).not.toEqual(5);
+        });
 
-test('verify dont render the messages when not have messages', () => {
-    const { container } = render(<ChatWindow messages={[]} />);
-    const chatMessagesContainer = container.querySelectorAll('.chat-message-container')
-    const chatMessageContainer = container.querySelector('.chat-message-container')
+        test('verify dont render the messages when not have messages', () => {
+            const { container } = render(<ChatWindow messages={[]} />);
+            const chatMessagesContainer = container.querySelectorAll('.chat-message-container')
+            const chatMessageContainer = container.querySelector('.chat-message-container')
 
-    expect(chatMessagesContainer.length).toEqual(0);
-    expect(chatMessageContainer).toBeNull();
+            expect(chatMessagesContainer.length).toEqual(0);
+            expect(chatMessageContainer).toBeNull();
 
-});
+        });
+    })
+})

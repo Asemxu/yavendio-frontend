@@ -1,40 +1,48 @@
+/* eslint-disable testing-library/no-node-access */
 import { render, fireEvent } from '@testing-library/react';
 import ChatInput from '../components/ChatInput';
 
-test('get chat-input render without crashed', () => {
-  render(<ChatInput addMessage={() => { }} onChangeInputMessage={() => { }} message="" />);
 
-  const chatInput = document.querySelector('.chat-input');
+describe('ChatInput', () => {
+  describe('ChatInput', () => {
+    it('get chat-input render without crashed', () => {
+      render(<ChatInput addMessage={() => { }} onChangeInputMessage={() => { }} message="" />);
 
-  expect(chatInput).toBeInTheDocument();
-});
+      const chatInput = document.querySelector('.chat-input');
 
-test('get verified form submited message', () => {
-  const mockAddMessage = jest.fn();
-  render(
-    <ChatInput addMessage={mockAddMessage} onChangeInputMessage={() => { }} message="" />
-  );
+      expect(chatInput).toBeInTheDocument();
+    });
 
-  const inputElement = document.querySelector('.input-message') as HTMLInputElement;
-  const formElement = document.querySelector('.chat-input') as HTMLFormElement;
+    it('get verified form submited message', () => {
+      const mockAddMessage = jest.fn();
+      render(
+        <ChatInput addMessage={mockAddMessage} onChangeInputMessage={() => { }} message="" />
+      );
 
-  fireEvent.change(inputElement, { target: { value: 'Nuevo mensaje' } });
-  fireEvent.submit(formElement);
+      const inputElement = document.querySelector('.input-message') as HTMLInputElement;
+      const formElement = document.querySelector('.chat-input') as HTMLFormElement;
 
-  expect(mockAddMessage).toHaveBeenCalledWith(expect.any(Object));
-});
+      fireEvent.change(inputElement, { target: { value: 'Nuevo mensaje' } });
+      fireEvent.submit(formElement);
 
-test('update chat-input when is typing', () => {
-  const mockOnChangeInputMessage = jest.fn();
-    render(
-      <ChatInput addMessage={() => {}} onChangeInputMessage={mockOnChangeInputMessage} message="" />
-    );
+      expect(mockAddMessage).toHaveBeenCalledWith(expect.any(Object));
+    });
 
-    const inputElement = document.querySelector('.input-message') as HTMLInputElement;
+    it('update chat-input when is typing', () => {
+      const mockOnChangeInputMessage = jest.fn();
+      render(
+        <ChatInput addMessage={() => { }} onChangeInputMessage={mockOnChangeInputMessage} message="" />
+      );
 
-    fireEvent.change(inputElement, { target: { value: 'Nuevo mensaje' } });
+      const inputElement = document.querySelector('.input-message') as HTMLInputElement;
 
-    expect(mockOnChangeInputMessage).toHaveBeenCalledWith('Nuevo mensaje');
+      fireEvent.change(inputElement, { target: { value: 'Nuevo mensaje' } });
 
-    expect(mockOnChangeInputMessage).not.toHaveBeenCalledWith('No se ingreso');
-});
+      expect(mockOnChangeInputMessage).toHaveBeenCalledWith('Nuevo mensaje');
+
+      expect(mockOnChangeInputMessage).not.toHaveBeenCalledWith('No se ingreso');
+    });
+  })
+})
+
+

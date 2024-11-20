@@ -2,8 +2,9 @@ import ChatInput from "./ChatInput";
 import ChatWindow from "./ChatWindow";
 import "../assets/ChatApp.css"
 import useChat from "../hooks/useChat"
+import { TYPEUSER } from "../utils/constant";
 const ChatApp = () => {
-    const { messages , sendMessage , username  , setMessage , message} = useChat();
+    const { messages , sendMessage , username  , setMessage , message , incrementId} = useChat();
     return (
         <div className="chat-app-container">
             <ChatWindow messages={messages}/>
@@ -12,10 +13,10 @@ const ChatApp = () => {
                 addMessage={(e) => {
                     e.preventDefault();
                     sendMessage({
-                        id : messages.length + 1,
+                        id : incrementId(),
                         username : username,
                         text : message,
-                        isUser : true
+                        isUser : TYPEUSER.ISUSER
                     })
                 }}
                 onChangeInputMessage={(message) => {

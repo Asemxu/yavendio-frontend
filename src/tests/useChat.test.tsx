@@ -1,4 +1,4 @@
-import { render, fireEvent, renderHook, act } from '@testing-library/react';
+import { renderHook, act, waitFor } from '@testing-library/react';
 import useChat from '../hooks/useChat';
 import WS from "jest-websocket-mock";
 import Message from '../interfaces/Message';
@@ -13,89 +13,74 @@ const messageUser: Message = {
 
 }
 
-test('get useChat Hook dont crashed', async () => {
+const connectServer = async () => {
     let server = new WS("ws://localhost:8080");
-    const { result } = renderHook(() => useChat())
+    const { result, } = renderHook(() => useChat())
     await server.connected;
-
-    expect(result.current).toEqual(expect.any(Object))
+    server.close()
     WS.clean()
+    return { result, server }
+}
 
-}, timeout);
+describe('useChat', () => {
+    describe('useChat', () => {
+        it('get useChat Hook dont crashed', async () => {
+            const { result } = await connectServer()
+            act(() => {
+                result.current.sendMessage(messageUser);
+            });
+            await waitFor(() => {
+                expect(result.current).toEqual(expect.any(Object))
+            })
+        })
+        it('get add message', async () => {
+            const { result } = await connectServer()
+            act(() => {
+                result.current.sendMessage(messageUser)
+            })
+            expect(result.current.messages).toEqual([messageUser])
+        }, timeout);
 
-test('get add message', async () => {
-    let server = new WS("ws://localhost:8080");
-    const { result } = renderHook(() => useChat())
-    await server.connected;
 
-    act(() => {
-        result.current.sendMessage(messageUser)
+        it('clear Message', async () => {
+            const { result } = await connectServer()
+            act(() => {
+                result.current.clearMessage()
+            })
+            expect(result.current.message).toEqual("")
+
+        }, timeout);
+
+
+        it('clear Message not empty', async () => {
+            const { result } = await connectServer()
+            act(() => {
+                result.current.clearMessage()
+            })
+            expect(result.current.message).not.toEqual("No borrado")
+        }, timeout);
+
+        it('get Random Username', async () => {
+            const { result } = await connectServer()
+            expect(result.current.username).not.toEqual("")
+
+        }, timeout);
+
+
+        it('valid connection WebSocket', async () => {
+            const { result } = await connectServer()
+
+            expect(result.current.ws).not.toBeNull();
+
+        }, timeout);
+
+
+        it('valid connection WebSocket to url', async () => {
+            const { result, server } = await connectServer()
+
+            expect(result.current.ws?.url).toEqual((await server.connected).url);
+
+        }, timeout);
     })
+})
 
-    expect(result.current.messages).toEqual([messageUser])
-    WS.clean()
-
-}, timeout);
-
-
-test('clear Message', async () => {
-    let server = new WS("ws://localhost:8080");
-    const { result } = renderHook(() => useChat())
-    await server.connected;
-
-    act(() => {
-        result.current.clearMessage()
-    })
-
-    expect(result.current.message).toEqual("")
-    WS.clean()
-
-}, timeout);
-
-
-test('clear Message not empty', async () => {
-    let server = new WS("ws://localhost:8080");
-    const { result } = renderHook(() => useChat())
-    await server.connected;
-
-    act(() => {
-        result.current.clearMessage()
-    })
-
-    expect(result.current.message).not.toEqual("No borrado")
-    WS.clean()
-
-}, timeout);
-
-test('get Random Username', async () => {
-    let server = new WS("ws://localhost:8080");
-    const { result } = renderHook(() => useChat())
-    await server.connected;
-
-
-    expect(result.current.username).not.toEqual("")
-    WS.clean()
-
-}, timeout);
-
-
-test('valid connection WebSocket', async () => {
-    let server = new WS("ws://localhost:8080");
-    const { result } = renderHook(() => useChat())
-    await server.connected;
-
-    expect(result.current.ws).not.toBeNull();
-    WS.clean()
-
-}, timeout);
-
-
-test('valid connection WebSocket to url', async () => {
-    let server = new WS("ws://localhost:8080");
-    const { result } = renderHook(() => useChat())
-    await server.connected;
-
-    expect(result.current.ws?.url).toEqual((await server.connected).url);
-    WS.clean()
-
-}, timeout);

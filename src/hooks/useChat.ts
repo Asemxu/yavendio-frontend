@@ -1,6 +1,7 @@
 import { useState , useEffect} from "react"
 import Message from "../interfaces/Message"
 import randomUsername from "../utils/RandomUsername";
+import { TYPEUSER } from "../utils/constant";
 const useChat = () => {
     const [ws, setWs] = useState<WebSocket | null>(null);
     const [username,setUsername] = useState(randomUsername)
@@ -17,30 +18,34 @@ const useChat = () => {
     useEffect(() => {
         const socket = new WebSocket('ws://localhost:8080');
         socket.onopen = () => {
-            console.log('Connected to WebSocket server');
+            console.log('Conectado');
         };
     
-        socket.onmessage = (event) => {
-            const  message = JSON.parse(event.data) as Message;
-            message.isUser = false
+        socket.onmessage = (event: MessageEvent) => {
+            const  message : Message = JSON.parse(event.data);
+            message.isUser = TYPEUSER.NOTUSER
             setMessages((prevMessages) => [...prevMessages, message]);
         };
     
         socket.onclose = () => {
-            console.log('Disconnected from WebSocket server');
+            console.log('Desconectado');
         };
 
         socket.onerror = (error) => {
-            console.error('WebSocket error:', error);
+            error.stopPropagation()
         };
     
         setWs(socket);
     
         return () => {
-            socket.close();
+            if(ws)
+                socket.close();
         };
     }, []);
     
+    const incrementId = () => {
+        return messages.length + 1;
+    }
  
     const clearMessage = () => {
         setMessage("")
@@ -49,6 +54,7 @@ const useChat = () => {
     return {
         messages,
         ws,
+        incrementId,
         setWs,
         clearMessage,
         message,
