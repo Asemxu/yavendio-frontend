@@ -1,14 +1,16 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import ReactDOM  from 'react-dom/client';
 import './assets/index.css';
 import App from './App';
-import reportWebVitals from './vitals/reportWebVitals';
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
-root.render(
-  <App />
-);
+const rootElement = document.getElementById('root');
+if (rootElement) {
+  const root = ReactDOM.createRoot(rootElement as HTMLElement);
+  root.render(
+    <App />
+  );
+  
+} else {
+  console.error("El elemento 'root' no se encontró en el DOM.");
+}
 
-reportWebVitals();
