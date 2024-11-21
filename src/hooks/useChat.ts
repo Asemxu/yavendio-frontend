@@ -22,7 +22,7 @@ const useChat = () => {
         };
     
         socket.onmessage = (event: MessageEvent) => {
-            const  message : Message = JSON.parse(event.data);
+            const  message : Message = JSON.parse(event.data as string) as Message;
             message.isUser = TYPEUSER.NOTUSER
             setMessages((prevMessages) => [...prevMessages, message]);
         };

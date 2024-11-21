@@ -3,9 +3,9 @@ import ReactDOM  from 'react-dom/client';
 import './assets/index.css';
 import App from './App';
 
-const rootElement = document.getElementById('root');
+const rootElement = document.getElementById('root') as HTMLElement;
 if (rootElement) {
-  const root : ReactDOM.Root = ReactDOM.createRoot(rootElement) ;
+  const root : ReactDOM.Root = ReactDOM.createRoot(rootElement)  as ReactDOM.Root;
   root.render(
     <App />
   );
