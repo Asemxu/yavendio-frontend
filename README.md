@@ -74,5 +74,5 @@ Este proyecto está licenciado bajo la Licencia MIT. Consulta el archivo [LICENS
 
 Si tienes alguna pregunta o sugerencia, no dudes en ponerte en contacto con nosotros:
 
-- **Correo Electrónico**: [support@yavendio.com](mailto:support@renzojimenezalfarotrabajos@gmail.com)
+- **Correo Electrónico**: [renzojimenezalfarotrabajos@gmail.com](mailto:support@renzojimenezalfarotrabajos@gmail.com)
 - **GitHub**: [Asemxu](https://github.com/Asemxu)
