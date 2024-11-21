@@ -44,8 +44,7 @@ Sigue estos pasos para configurar el proyecto localmente:
 4. Inicia la aplicación:
 
    ```bash
-   npm start
-
+    npm start
 
 ## 📜 Scripts Disponibles
 
