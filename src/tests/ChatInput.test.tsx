@@ -1,3 +1,4 @@
+/* eslint-disable testing-library/no-container */
 /* eslint-disable testing-library/no-node-access */
 import { render, fireEvent } from '@testing-library/react';
 import ChatInput from '../components/ChatInput';
@@ -15,14 +16,14 @@ describe('ChatInput', () => {
 
     it('get verified form submited message', () => {
       const mockAddMessage = jest.fn();
-      render(
+      const { container } = render(
         <ChatInput addMessage={mockAddMessage} onChangeInputMessage={() => { }} message="" />
       );
 
-      const inputElement = document.querySelector('.input-message') as HTMLInputElement;
-      const formElement = document.querySelector('.chat-input') as HTMLFormElement;
+      const inputElement = container.querySelector('.input-message') as HTMLInputElement;
+      const formElement = container.querySelector('.chat-input') as HTMLFormElement;
 
-      fireEvent.change(inputElement, { target: { value: 'Nuevo mensaje' } });
+      fireEvent.change(inputElement, { target: { value: 'Mensaje del input' } });
       fireEvent.submit(formElement);
 
       expect(mockAddMessage).toHaveBeenCalledWith(expect.any(Object));
