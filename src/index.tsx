@@ -5,7 +5,7 @@ import App from './App';
 
 const rootElement : HTMLElement | null = document.getElementById('root');
 if (rootElement instanceof HTMLElement) {
-  const root : ReactDOM.Root = ReactDOM.createRoot(rootElement as HTMLElement)  as ReactDOM.Root;
+  const root : ReactDOM.Root = ReactDOM.createRoot(rootElement)  as ReactDOM.Root;
   root.render(
     <App />
   );
