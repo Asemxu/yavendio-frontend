@@ -10,8 +10,7 @@ const ChatApp = () => {
             <ChatWindow messages={messages}/>
             <ChatInput 
                 message={message}
-                addMessage={(e) => {
-                    e.preventDefault();
+                addMessage={() => {
                     sendMessage({
                         id : incrementId(),
                         username : username,
