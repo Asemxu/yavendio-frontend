@@ -1,11 +1,13 @@
 import { useState , useEffect} from "react"
 import Message from "../interfaces/Message"
 import randomUsername from "../utils/RandomUsername";
-import { TYPEUSER } from "../utils/constant";
+import { DATA, MESSAGES, TYPEDATASEND, TYPEUSER } from "../utils/constant";
+import WebSocketInfo from "../interfaces/WebSocketInfo";
+import { toast, ToastOptions } from "react-toastify";
 const useChat = () => {
     const [ws, setWs] = useState<WebSocket | null>(null);
     const [username,setUsername] = useState(randomUsername)
-    const [message,setMessage] = useState("")
+    const [message,setMessage] = useState(DATA.EMPTY)
     const [messages,setMessages] = useState<Message[]>([]);
     const sendMessage = (message: Message) => {
         if(ws){
@@ -16,19 +18,30 @@ const useChat = () => {
     }
 
     useEffect(() => {
-        const socket = new WebSocket('ws://localhost:8080');
+        const socket = new WebSocket(DATA.WEBSOCKETSERVER);
         socket.onopen = () => {
-            console.log('Conectado');
+            console.log(MESSAGES.USERCONNECTED);
         };
+
     
         socket.onmessage = (event: MessageEvent) => {
-            const  message : Message = JSON.parse(event.data as string) as Message;
-            message.isUser = TYPEUSER.NOTUSER
-            setMessages((prevMessages) => [...prevMessages, message]);
+            const infoSocket : WebSocketInfo = JSON.parse(event.data as string) as WebSocketInfo;
+
+            switch(infoSocket.type){
+                case TYPEDATASEND.NEWUSER:
+                    toast(MESSAGES.NEWUSER, DATA.TOASTOPTIONSDEFAULT  as ToastOptions)
+                    break;
+                case TYPEDATASEND.MESSAGE:
+                    const message : Message = infoSocket.data as Message
+                    message.isUser = TYPEUSER.NOTUSER
+                    setMessages((prevMessages) => [...prevMessages, message]);
+                    break
+            }
+            
         };
     
         socket.onclose = () => {
-            console.log('Desconectado');
+            console.log(MESSAGES.USERDISCONNECTED);
         };
 
         socket.onerror = (error) => {
@@ -48,7 +61,7 @@ const useChat = () => {
     }
  
     const clearMessage = () => {
-        setMessage("")
+        setMessage(DATA.EMPTY)
     }
 
     return {
