@@ -31,11 +31,12 @@ const useChat = () => {
                 case TYPEDATASEND.NEWUSER:
                     toast(MESSAGES.NEWUSER, DATA.TOASTOPTIONSDEFAULT  as ToastOptions)
                     break;
-                case TYPEDATASEND.MESSAGE:
+                case TYPEDATASEND.MESSAGE: {
                     const message : Message = infoSocket.data as Message
                     message.isUser = TYPEUSER.NOTUSER
                     setMessages((prevMessages) => [...prevMessages, message]);
                     break
+                }
             }
             
         };
