@@ -8,9 +8,9 @@ interface ChatInputProps {
 }
 const ChatInput = ({ addMessage, onChangeInputMessage, message }: ChatInputProps) => {
     return (
-        <form onSubmit={() => { addMessage(); }} className="chat-input">
+        <form onSubmit={(e) => { e.preventDefault();addMessage(); }} className="chat-input">
             <input className="input-message" type="text" placeholder="Ingrese mensaje" value={message} onChange={(e) => { onChangeInputMessage(e.target.value); }} required />
-            <button type="submit" className="btn-send-mwessage">Enviar</button>
+            <button type="submit" className="btn-send-message">Enviar</button>
         </form>
 
     )
